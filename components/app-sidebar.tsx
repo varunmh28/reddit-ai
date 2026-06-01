@@ -1,4 +1,4 @@
-"use client"
+
 
 import * as React from "react"
 
@@ -21,10 +21,11 @@ import {
   SidebarMenuSubItem,
   SidebarRail,
 } from "@/components/ui/sidebar"
-import { GalleryVerticalEndIcon, PlusIcon, MinusIcon, HomeIcon, TrendingUpIcon, FlameIcon } from "lucide-react"
+import { GalleryVerticalEndIcon, PlusIcon, MinusIcon, HomeIcon, TrendingUpIcon, FlameIcon, Link2 } from "lucide-react"
 import Image from "next/image"
 import ReddishLogo from "@/images/Reddish Full.png"
 import Link from "next/link"
+import { getSubreddits } from "@/sanity/lib/subreddit/getSubreddits"
 
 type SidebarData = {
   navMain: {
@@ -40,32 +41,29 @@ type SidebarData = {
 
 
 
-// This is sample data.
+
+
+export async function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+
+  //get all subreddits from sanity 
+   const subreddits = await getSubreddits();
+
+  // console.log(subreddits);
+
+  // This is sample data.
 const sidebarData: SidebarData = {
   navMain: [
     {
       title: "Communities",
       url: "#",
-      items: [
-        {
-          title: "Installation",
-          url: "#",
-          isActive:false,
-        },
-        {
-          title: "Project Structure",
-          url: "#",
-          isActive:false,
-        },
-      ],
+      items: subreddits?.map((subreddit) => ({
+        title:subreddit.title || "unknown",
+        url: `/community/${subreddit.slug}`,
+        isActive: false,
+      })) || [] ,
     },
-  ]
-}
-
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-
-  //get all subreddits from sanity 
-  // const subreddits = await getSubreddits();
+  ],
+};
 
   return (
     <Sidebar {...props}>
@@ -142,7 +140,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                               asChild
                               isActive={item.isActive}
                             >
-                              <a href={item.url}>{item.title}</a>
+                              <Link href={item.url}>{item.title}</Link>
                             </SidebarMenuSubButton>
                           </SidebarMenuSubItem>
                         ))}
