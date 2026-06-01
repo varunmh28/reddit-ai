@@ -9,7 +9,7 @@ import { ChevronLeftIcon, MenuIcon } from "lucide-react";
 import { useSidebar } from "./ui/sidebar";
 
 function Header() {
-const {user} = useUser();
+//const {user} = useUser();
 const {toggleSidebar , open , isMobile} = useSidebar()
   return (
     <header className="flex items-center justify-between p-4 py-4 border-b border-gray-200">
