@@ -26,6 +26,7 @@ import Image from "next/image"
 import ReddishLogo from "@/images/Reddish Full.png"
 import Link from "next/link"
 import { getSubreddits } from "@/sanity/lib/subreddit/getSubreddits"
+import CreateCommunityButton from "./header/CreateCommunityButton"
 
 type SidebarData = {
   navMain: {
@@ -46,7 +47,7 @@ type SidebarData = {
 export async function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
   //get all subreddits from sanity 
-   const subreddits = await getSubreddits();
+   const subreddits = await getSubreddits(); 
 
   // console.log(subreddits);
 
@@ -89,7 +90,7 @@ const sidebarData: SidebarData = {
           <SidebarMenu>
             <SidebarMenuItem>
               <SidebarMenuButton asChild>
-                  {/* <CreateCommunityButton />  */}
+                  <CreateCommunityButton /> 
               </SidebarMenuButton>
               <SidebarMenuButton asChild className="p-5">
                 <Link href="/">
