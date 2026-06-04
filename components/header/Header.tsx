@@ -7,6 +7,7 @@ import ReddishLogo from "@/images/Reddish Full.png";
 import ReddishLogoOnly from "@/images/Reddish Logo Only.png";
 import { ChevronLeftIcon, MenuIcon } from "lucide-react";
 import { useSidebar } from "../ui/sidebar";
+import CreatePost from "../post/CreatePost";
 
 function Header() {
 //const {user} = useUser();
@@ -39,7 +40,10 @@ const {toggleSidebar , open , isMobile} = useSidebar()
  
 </div>
 {/* Right Side */}
-<div>
+<div className="flex items-center gap-2">
+
+    <CreatePost />
+
   <Show when="signed-in">
     <UserButton />
   </Show>
