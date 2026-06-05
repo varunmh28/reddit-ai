@@ -4,7 +4,7 @@ import { defineQuery } from "groq";
 export async function getPosts() {
     // get all the posts which are not deleted
   const getAllPostsQuery =
-    defineQuery(`*[_type == "post" && isDeleted != true] {    
+    defineQuery(`*[_type == "post" && isDeleted != true ] {    
     _id,
     title,
     "slug": slug.current,
