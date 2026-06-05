@@ -3,7 +3,7 @@ import { z } from "zod";
 import { tool } from "ai";
 
 export const censorPost = tool({
-  description: "If inappropriate content or word fond in the title or body censor the whole title or body with a single text [Censored]",
+  description: "Censor inappropriate content in post title and body",
   inputSchema: z.object({
     postId: z.string().describe("The ID of the post to censor"),
     title: z.string().optional().describe("Censored version of the title"),
