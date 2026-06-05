@@ -56,7 +56,7 @@ function CommentInput({postId , parentCommentId} : {
         type="submit"
         disabled={isPending || !user || content.length === 0 }
         >
-            {isPending ? "Commening..." : "Comment"}
+            {isPending ? "Commenting..." : "Comment"}
         </Button>
     </form>
   )
